@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.attendance.mapper.DetectAttendanceSheetMapper">
+    
+    <resultMap type="DetectAttendanceSheet" id="DetectAttendanceSheetResult">
+        <result property="id"    column="id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="date"    column="date"    />
+        <result property="location"    column="location"    />
+        <result property="longitude"    column="longitude"    />
+        <result property="latitude"    column="latitude"    />
+        <result property="username"    column="username"    />
+    </resultMap>
+
+    <sql id="selectDetectAttendanceSheetVo">
+        select id, user_id, date, location, longitude, latitude, username from detect_attendance_sheet
+    </sql>
+
+    <select id="selectDetectAttendanceSheetList" parameterType="DetectAttendanceSheet" resultMap="DetectAttendanceSheetResult">
+        <include refid="selectDetectAttendanceSheetVo"/>
+        <where>  
+            <if test="userId != null  and userId != ''"> and user_id = #{userId}</if>
+            <if test="date != null  and date != ''"> and date = #{date}</if>
+            <if test="location != null  and location != ''"> and location = #{location}</if>
+            <if test="longitude != null "> and longitude = #{longitude}</if>
+            <if test="latitude != null "> and latitude = #{latitude}</if>
+            <if test="username != null  and username != ''"> and username like concat('%', #{username}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectDetectAttendanceSheetById" parameterType="Integer" resultMap="DetectAttendanceSheetResult">
+        <include refid="selectDetectAttendanceSheetVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertDetectAttendanceSheet" parameterType="DetectAttendanceSheet" useGeneratedKeys="true" keyProperty="id">
+        insert into detect_attendance_sheet
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,</if>
+            <if test="date != null">date,</if>
+            <if test="location != null">location,</if>
+            <if test="longitude != null">longitude,</if>
+            <if test="latitude != null">latitude,</if>
+            <if test="username != null">username,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="date != null">#{date},</if>
+            <if test="location != null">#{location},</if>
+            <if test="longitude != null">#{longitude},</if>
+            <if test="latitude != null">#{latitude},</if>
+            <if test="username != null">#{username},</if>
+         </trim>
+    </insert>
+
+    <update id="updateDetectAttendanceSheet" parameterType="DetectAttendanceSheet">
+        update detect_attendance_sheet
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="date != null">date = #{date},</if>
+            <if test="location != null">location = #{location},</if>
+            <if test="longitude != null">longitude = #{longitude},</if>
+            <if test="latitude != null">latitude = #{latitude},</if>
+            <if test="username != null">username = #{username},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteDetectAttendanceSheetById" parameterType="Integer">
+        delete from detect_attendance_sheet where id = #{id}
+    </delete>
+
+    <delete id="deleteDetectAttendanceSheetByIds" parameterType="String">
+        delete from detect_attendance_sheet where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
