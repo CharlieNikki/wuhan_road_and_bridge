@@ -10,7 +10,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 外检考勤对象 detect_attendance_sheet
  * 
  * @author yzw
- * @date 2022-12-25
+ * @date 2022-12-27
  */
 public class DetectAttendanceSheet extends BaseEntity
 {
@@ -32,11 +32,9 @@ public class DetectAttendanceSheet extends BaseEntity
     private String location;
 
     /** 经度 */
-    @Excel(name = "经度")
     private BigDecimal longitude;
 
     /** 纬度 */
-    @Excel(name = "纬度")
     private BigDecimal latitude;
 
     /** 考勤人员姓名 */

@@ -107,8 +107,6 @@
       <el-table-column label="考勤人员id" align="center" prop="userId" />
       <el-table-column label="考勤人员签到时间" align="center" prop="date" />
       <el-table-column label="考勤人员签到地点" align="center" prop="location" />
-      <el-table-column label="经度" align="center" prop="longitude" />
-      <el-table-column label="纬度" align="center" prop="latitude" />
       <el-table-column label="考勤人员姓名" align="center" prop="username" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
