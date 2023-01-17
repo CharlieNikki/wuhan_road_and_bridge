@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.detectlist.mapper.DetectProjectListMapper">
+    
+    <resultMap type="DetectProjectList" id="DetectProjectListResult">
+        <result property="projectName"    column="project_name"    />
+        <result property="username"    column="username"    />
+        <result property="telephone"    column="telephone"    />
+        <result property="content"    column="content"    />
+        <result property="date"    column="date"    />
+        <result property="datastatus"    column="dataStatus"    />
+        <result property="projectId"    column="project_id"    />
+    </resultMap>
+
+    <sql id="selectDetectProjectListVo">
+        select project_name, username, telephone, content, date, dataStatus, project_id from detect_project_list
+    </sql>
+
+    <select id="selectDetectProjectListList" parameterType="DetectProjectList" resultMap="DetectProjectListResult">
+        <include refid="selectDetectProjectListVo"/>
+        <where>  
+            <if test="projectName != null  and projectName != ''"> and project_name like concat('%', #{projectName}, '%')</if>
+            <if test="username != null  and username != ''"> and username like concat('%', #{username}, '%')</if>
+            <if test="telephone != null  and telephone != ''"> and telephone = #{telephone}</if>
+            <if test="content != null  and content != ''"> and content = #{content}</if>
+            <if test="date != null  and date != ''"> and date = #{date}</if>
+            <if test="datastatus != null  and datastatus != ''"> and dataStatus = #{datastatus}</if>
+        </where>
+    </select>
+    
+    <select id="selectDetectProjectListByProjectId" parameterType="String" resultMap="DetectProjectListResult">
+        <include refid="selectDetectProjectListVo"/>
+        where project_id = #{projectId}
+    </select>
+        
+    <insert id="insertDetectProjectList" parameterType="DetectProjectList">
+        insert into detect_project_list
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="projectName != null">project_name,</if>
+            <if test="username != null">username,</if>
+            <if test="telephone != null">telephone,</if>
+            <if test="content != null">content,</if>
+            <if test="date != null">date,</if>
+            <if test="datastatus != null and datastatus != ''">dataStatus,</if>
+            <if test="projectId != null">project_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="projectName != null">#{projectName},</if>
+            <if test="username != null">#{username},</if>
+            <if test="telephone != null">#{telephone},</if>
+            <if test="content != null">#{content},</if>
+            <if test="date != null">#{date},</if>
+            <if test="datastatus != null and datastatus != ''">#{datastatus},</if>
+            <if test="projectId != null">#{projectId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateDetectProjectList" parameterType="DetectProjectList">
+        update detect_project_list
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="projectName != null">project_name = #{projectName},</if>
+            <if test="username != null">username = #{username},</if>
+            <if test="telephone != null">telephone = #{telephone},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="date != null">date = #{date},</if>
+            <if test="datastatus != null and datastatus != ''">dataStatus = #{datastatus},</if>
+        </trim>
+        where project_id = #{projectId}
+    </update>
+
+    <delete id="deleteDetectProjectListByProjectId" parameterType="String">
+        delete from detect_project_list where project_id = #{projectId}
+    </delete>
+
+    <delete id="deleteDetectProjectListByProjectIds" parameterType="String">
+        delete from detect_project_list where project_id in 
+        <foreach item="projectId" collection="array" open="(" separator="," close=")">
+            #{projectId}
+        </foreach>
+    </delete>
+</mapper>
