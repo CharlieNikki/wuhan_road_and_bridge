@@ -112,7 +112,8 @@ public class DetectProjectListController extends BaseController
 
         if (detectProjectListService.approvalDetectProjectByProjectId(projectId)) {
 
-            return toAjax(detectProjectListService)
+
         }
+        return null;
     }
 }
