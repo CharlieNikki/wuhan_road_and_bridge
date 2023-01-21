@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.detectlist.mapper.DetectProjectListMapper">
-    
+
     <resultMap type="DetectProjectList" id="DetectProjectListResult">
         <result property="projectName"    column="project_name"    />
         <result property="username"    column="username"    />
@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <select id="selectDetectProjectListList" parameterType="DetectProjectList" resultMap="DetectProjectListResult">
         <include refid="selectDetectProjectListVo"/>
-        <where>  
+        <where>
             <if test="projectName != null  and projectName != ''"> and project_name like concat('%', #{projectName}, '%')</if>
             <if test="username != null  and username != ''"> and username like concat('%', #{username}, '%')</if>
             <if test="telephone != null  and telephone != ''"> and telephone = #{telephone}</if>
@@ -29,12 +29,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="datastatus != null  and datastatus != ''"> and dataStatus = #{datastatus}</if>
         </where>
     </select>
-    
+
     <select id="selectDetectProjectListByProjectId" parameterType="String" resultMap="DetectProjectListResult">
         <include refid="selectDetectProjectListVo"/>
         where project_id = #{projectId}
     </select>
-        
+
     <insert id="insertDetectProjectList" parameterType="DetectProjectList">
         insert into detect_project_list
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -75,9 +75,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </delete>
 
     <delete id="deleteDetectProjectListByProjectIds" parameterType="String">
-        delete from detect_project_list where project_id in 
+        delete from detect_project_list where project_id in
         <foreach item="projectId" collection="array" open="(" separator="," close=")">
             #{projectId}
         </foreach>
     </delete>
+
+    <update id="approvalDetectProjectByProjectId">
+        update
+            detect_project_list
+        set
+            dataStatus = '已受理'
+        where
+            projectId = #{projectId}
+    </update>
 </mapper>

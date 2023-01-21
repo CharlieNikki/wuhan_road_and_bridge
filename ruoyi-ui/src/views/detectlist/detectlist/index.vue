@@ -321,9 +321,9 @@ export default {
     },
     /** 审批按钮操作 */
     handleApproval(row) {
-      const projectIds = row.projectId || this.ids;
-      this.$modal.confirm('是否确认审批编号为"' + projectIds + '"的工程？').then(function() {
-        return approvalDetect(projectIds);
+      const projectId = row.projectId || this.ids;
+      this.$modal.confirm('是否确认审批编号为"' + projectId + '"的工程？').then(function() {
+        return approvalDetect(projectId);
       }).then(() => {
         this.getList();
         this.$modal.msgSuccess("申请已受理");

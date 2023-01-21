@@ -5,15 +5,15 @@ import com.ruoyi.detectlist.domain.DetectProjectList;
 
 /**
  * 项目检测信息Mapper接口
- * 
+ *
  * @author Charlie
  * @date 2023-01-15
  */
-public interface DetectProjectListMapper 
+public interface DetectProjectListMapper
 {
     /**
      * 查询项目检测信息
-     * 
+     *
      * @param projectId 项目检测信息主键
      * @return 项目检测信息
      */
@@ -21,7 +21,7 @@ public interface DetectProjectListMapper
 
     /**
      * 查询项目检测信息列表
-     * 
+     *
      * @param detectProjectList 项目检测信息
      * @return 项目检测信息集合
      */
@@ -29,7 +29,7 @@ public interface DetectProjectListMapper
 
     /**
      * 新增项目检测信息
-     * 
+     *
      * @param detectProjectList 项目检测信息
      * @return 结果
      */
@@ -37,7 +37,7 @@ public interface DetectProjectListMapper
 
     /**
      * 修改项目检测信息
-     * 
+     *
      * @param detectProjectList 项目检测信息
      * @return 结果
      */
@@ -45,7 +45,7 @@ public interface DetectProjectListMapper
 
     /**
      * 删除项目检测信息
-     * 
+     *
      * @param projectId 项目检测信息主键
      * @return 结果
      */
@@ -53,9 +53,16 @@ public interface DetectProjectListMapper
 
     /**
      * 批量删除项目检测信息
-     * 
+     *
      * @param projectIds 需要删除的数据主键集合
      * @return 结果
      */
     public int deleteDetectProjectListByProjectIds(String[] projectIds);
+
+    /**
+     * 审批项目申请
+     * @param projectId 需要审批项目的主键
+     * @return 结果
+     */
+    public int approvalDetectProjectByProjectId(String projectId);
 }

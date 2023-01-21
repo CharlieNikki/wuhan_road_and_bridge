@@ -17,7 +17,7 @@ import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.enums.BusinessType;
 import com.ruoyi.detectlist.domain.DetectProjectList;
-import com.ruoyi.detectlist.service.IDetectProjectListService;
+import com.ruoyi.detectlist.service.DetectProjectListService;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.common.core.page.TableDataInfo;
 
@@ -32,7 +32,7 @@ import com.ruoyi.common.core.page.TableDataInfo;
 public class DetectProjectListController extends BaseController
 {
     @Autowired
-    private IDetectProjectListService detectProjectListService;
+    private DetectProjectListService detectProjectListService;
 
     /**
      * 查询项目检测信息列表
@@ -107,9 +107,12 @@ public class DetectProjectListController extends BaseController
      */
     @PreAuthorize("@ss.hasAnyPermi('detectlist:detectlist:list')")
     @Log(title = "审批项目申请", businessType = BusinessType.OTHER)
-    @PutMapping("/{projectIds}")
-    public AjaxResult approval(@PathVariable String[] projectIds) {
+    @PutMapping("/{projectId}")
+    public AjaxResult approval(@PathVariable String projectId) {
 
-        return null;
+        if (detectProjectListService.approvalDetectProjectByProjectId(projectId)) {
+
+            return toAjax(detectProjectListService)
+        }
     }
 }
