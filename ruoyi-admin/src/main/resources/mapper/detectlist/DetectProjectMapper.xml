@@ -4,13 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.detectlist.mapper.DetectProjectMapper">
 
+    <!--更改申请项目的审批状态,将未审批改为已审批-->
     <update id="updateProjectDataStatusByProjectId">
         update
             detect_request
         set
             data_status = #{dataStatus}
         where
-            projectId = #{projectId}
+            id = #{projectId}
     </update>
 
 </mapper>

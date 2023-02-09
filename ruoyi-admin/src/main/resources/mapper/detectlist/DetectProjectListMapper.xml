@@ -81,12 +81,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </foreach>
     </delete>
 
+    <!--项目申请审批-->
     <update id="approvalDetectProjectByProjectId">
         update
             detect_project_list
         set
             dataStatus = '已受理'
         where
-            projectId = #{projectId}
+            project_id = #{projectId}
     </update>
 </mapper>

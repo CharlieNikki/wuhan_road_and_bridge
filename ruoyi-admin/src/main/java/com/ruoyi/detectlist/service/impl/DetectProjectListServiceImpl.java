@@ -106,10 +106,10 @@ public class DetectProjectListServiceImpl implements DetectProjectListService
     public boolean approvalDetectProjectByProjectId(String projectId) {
 
         // 1. 更改DetectProject中的data_status
-        detectProjectMapper.updateProjectDataStatusByProjectId(projectId, 1);
+        int updateResult = detectProjectMapper.updateProjectDataStatusByProjectId(projectId, 1);
         // 2. 更改DetectProjectList中的dataStatus
-        detectProjectListMapper.approvalDetectProjectByProjectId(projectId);
-
-        return true;
+        int approvalResult = detectProjectListMapper.approvalDetectProjectByProjectId(projectId);
+        // 3. @Transactional注解不生效，成功进行审批
+        return updateResult == 1 && approvalResult == 1;
     }
 }

@@ -110,10 +110,8 @@ public class DetectProjectListController extends BaseController
     @PutMapping("/{projectId}")
     public AjaxResult approval(@PathVariable String projectId) {
 
-        if (detectProjectListService.approvalDetectProjectByProjectId(projectId)) {
-
-
-        }
-        return null;
+        // 成功修改两张表的数据
+        // 返回ajax数据
+        return toAjax(detectProjectListService.approvalDetectProjectByProjectId(projectId));
     }
 }

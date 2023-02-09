@@ -2,10 +2,11 @@ package com.ruoyi.detectlist.mapper;
 
 import java.util.List;
 import com.ruoyi.detectlist.domain.DetectProjectList;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 项目检测信息Mapper接口
- *
+ *                          detect_project_list表
  * @author Charlie
  * @date 2023-01-15
  */
@@ -64,5 +65,5 @@ public interface DetectProjectListMapper
      * @param projectId 需要审批项目的主键
      * @return 结果
      */
-    public int approvalDetectProjectByProjectId(String projectId);
+    public int approvalDetectProjectByProjectId(@Param("projectId") String projectId);
 }
