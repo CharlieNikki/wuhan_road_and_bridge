@@ -90,4 +90,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where
             project_id = #{projectId}
     </update>
+
+    <!--取消项目申请审批-->
+    <update id="cancelApprovalDetectProjectByProjectId">
+        update
+            detect_project_list
+        set
+            dataStatus = '未受理'
+        where
+            project_id = #{projectId}
+    </update>
 </mapper>

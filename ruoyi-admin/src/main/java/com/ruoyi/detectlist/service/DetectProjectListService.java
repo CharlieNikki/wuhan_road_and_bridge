@@ -63,4 +63,9 @@ public interface DetectProjectListService
      * 审批项目申请信息
      */
     boolean approvalDetectProjectByProjectId(String projectId);
+
+    /**
+     * 取消项目审批申请
+     */
+    boolean cancelApprovalByProjectId(String projectId);
 }

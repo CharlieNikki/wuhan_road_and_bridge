@@ -114,4 +114,17 @@ public class DetectProjectListController extends BaseController
         // 返回ajax数据
         return toAjax(detectProjectListService.approvalDetectProjectByProjectId(projectId));
     }
+
+    /**
+     * 取消项目审批
+     */
+    @PreAuthorize("@ss.hasAnyPermi('detectlist:detectlist:list')")
+    @Log(title = "取消审批项目申请", businessType = BusinessType.OTHER)
+    @PostMapping("/{projectId}")
+    public AjaxResult cancelApproval(@PathVariable String projectId) {
+
+        // 成功修改两张表的数据
+        // 返回ajax数据
+        return toAjax(detectProjectListService.approvalDetectProjectByProjectId(projectId));
+    }
 }

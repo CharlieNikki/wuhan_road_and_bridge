@@ -50,3 +50,11 @@ export function approvalDetect(projectId) {
     method: 'put'
   })
 }
+
+// 取消审批受理 by projectId
+export function cancelApproval(projectId) {
+  return request({
+    url: '/detectlist/detectlist/' + projectId,
+    method: 'post'
+  })
+}

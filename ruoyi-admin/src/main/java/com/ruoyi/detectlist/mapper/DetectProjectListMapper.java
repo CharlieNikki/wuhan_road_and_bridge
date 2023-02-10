@@ -66,4 +66,11 @@ public interface DetectProjectListMapper
      * @return 结果
      */
     public int approvalDetectProjectByProjectId(@Param("projectId") String projectId);
+
+    /**
+     * 取消项目审批
+     * @param projectId 主键
+     * @return 结果
+     */
+    public int cancelApprovalDetectProjectByProjectId(@Param("projectId") String projectId);
 }

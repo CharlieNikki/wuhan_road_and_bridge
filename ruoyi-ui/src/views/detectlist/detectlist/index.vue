@@ -111,13 +111,13 @@
             @click="handleUpdate(scope.row)"
             v-hasPermi="['detectlist:detectlist:edit']"
           >修改</el-button>
-          <el-button
+<!--          <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
             v-hasPermi="['detectlist:detectlist:remove']"
-          >删除</el-button>
+          >删除</el-button>-->
           <el-button
             size="mini"
             type="text"
@@ -125,6 +125,13 @@
             @click="handleApproval(scope.row)"
             v-hasPermi="['detectlist:detectlist:remove']"
           >审批受理</el-button>
+          <el-button
+            size="mini"
+            type="text"
+            icon="el-icon-paperclip"
+            @click="cancelApproval(scope.row)"
+            v-hasPermi="['detectlist:detectlist:remove']"
+          >取消受理</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -174,7 +181,7 @@ import {
   delDetectlist,
   addDetectlist,
   updateDetectlist,
-  approvalDetect
+  approvalDetect, cancelApproval
 } from "@/api/detectlist/detectlist";
 
 export default {
@@ -327,6 +334,16 @@ export default {
       }).then(() => {
         this.getList();
         this.$modal.msgSuccess("申请已受理");
+      }).catch(() => {});
+    },
+    /** 取消审批操作 */
+    cancelApproval(row) {
+      const projectId = row.projectId || this.ids;
+      this.$modal.confirm('是否取消受理编号为"' + projectId + '"的工程？').then(function() {
+        return cancelApproval(projectId);
+      }).then(() => {
+        this.getList();
+        this.$modal.msgSuccess("申请已取消受理");
       }).catch(() => {});
     }
   }

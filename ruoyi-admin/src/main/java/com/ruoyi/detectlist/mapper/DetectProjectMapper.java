@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Param;
 public interface DetectProjectMapper {
 
     /**
-     * 更改申请项目的审批状态,将未审批改为已审批
+     * 更改申请项目的审批状态
      */
     int updateProjectDataStatusByProjectId(@Param("projectId") String projectId, @Param("dataStatus") int dataStatus);
 }

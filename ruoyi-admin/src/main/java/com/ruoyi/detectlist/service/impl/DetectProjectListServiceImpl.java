@@ -112,4 +112,17 @@ public class DetectProjectListServiceImpl implements DetectProjectListService
         // 3. @Transactional注解不生效，成功进行审批
         return updateResult == 1 && approvalResult == 1;
     }
+
+    /**
+     * 取消项目申请审批
+     */
+    @Override
+    public boolean cancelApprovalByProjectId(String projectId) {
+
+        // 1. 更改DetectProject中的data_status
+        int updateResult = detectProjectMapper.updateProjectDataStatusByProjectId(projectId, 0);
+        // 2. 更改DetectProjectList中的dataStatus
+        // 3. @Transaction注解不生效，成功取消审批
+        return false;
+    }
 }
