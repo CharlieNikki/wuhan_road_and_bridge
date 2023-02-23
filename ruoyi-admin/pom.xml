@@ -17,6 +17,13 @@
 
     <dependencies>
 
+        <!-- 依赖activiti -->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>ruoyi-activiti</artifactId>
+            <version>3.8.4</version>
+        </dependency>
+
         <!-- spring-boot-devtools -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
