@@ -1,15 +1,16 @@
 package com.ruoyi.order.domain;
 
+import java.math.BigDecimal;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
- * 委托单信息对象 detect_order
- *
+ * 委托信息对象 detect_order
+ * 
  * @author yzw
- * @date 2023-03-16
+ * @date 2023-04-05
  */
 public class DetectOrder extends BaseEntity
 {
@@ -71,131 +72,144 @@ public class DetectOrder extends BaseEntity
     @Excel(name = "成型日期")
     private String moldingDate;
 
-    public void setProjectId(String projectId)
+    /** 样品价格 */
+    @Excel(name = "样品价格")
+    private BigDecimal price;
+
+    public void setProjectId(String projectId) 
     {
         this.projectId = projectId;
     }
 
-    public String getProjectId()
+    public String getProjectId() 
     {
         return projectId;
     }
-    public void setSampleId(String sampleId)
+    public void setSampleId(String sampleId) 
     {
         this.sampleId = sampleId;
     }
 
-    public String getSampleId()
+    public String getSampleId() 
     {
         return sampleId;
     }
-    public void setSampleType(String sampleType)
+    public void setSampleType(String sampleType) 
     {
         this.sampleType = sampleType;
     }
 
-    public String getSampleType()
+    public String getSampleType() 
     {
         return sampleType;
     }
-    public void setProjectName(String projectName)
+    public void setProjectName(String projectName) 
     {
         this.projectName = projectName;
     }
 
-    public String getProjectName()
+    public String getProjectName() 
     {
         return projectName;
     }
-    public void setProjectCompany(String projectCompany)
+    public void setProjectCompany(String projectCompany) 
     {
         this.projectCompany = projectCompany;
     }
 
-    public String getProjectCompany()
+    public String getProjectCompany() 
     {
         return projectCompany;
     }
-    public void setSampleName(String sampleName)
+    public void setSampleName(String sampleName) 
     {
         this.sampleName = sampleName;
     }
 
-    public String getSampleName()
+    public String getSampleName() 
     {
         return sampleName;
     }
-    public void setLevel(String level)
+    public void setLevel(String level) 
     {
         this.level = level;
     }
 
-    public String getLevel()
+    public String getLevel() 
     {
         return level;
     }
-    public void setSpecification(String specification)
+    public void setSpecification(String specification) 
     {
         this.specification = specification;
     }
 
-    public String getSpecification()
+    public String getSpecification() 
     {
         return specification;
     }
-    public void setClient(String client)
+    public void setClient(String client) 
     {
         this.client = client;
     }
 
-    public String getClient()
+    public String getClient() 
     {
         return client;
     }
-    public void setRecipient(String recipient)
+    public void setRecipient(String recipient) 
     {
         this.recipient = recipient;
     }
 
-    public String getRecipient()
+    public String getRecipient() 
     {
         return recipient;
     }
-    public void setAcceptanceDate(String acceptanceDate)
+    public void setAcceptanceDate(String acceptanceDate) 
     {
         this.acceptanceDate = acceptanceDate;
     }
 
-    public String getAcceptanceDate()
+    public String getAcceptanceDate() 
     {
         return acceptanceDate;
     }
-    public void setTestItems(String testItems)
+    public void setTestItems(String testItems) 
     {
         this.testItems = testItems;
     }
 
-    public String getTestItems()
+    public String getTestItems() 
     {
         return testItems;
     }
-    public void setConservationMethod(String conservationMethod)
+    public void setConservationMethod(String conservationMethod) 
     {
         this.conservationMethod = conservationMethod;
     }
 
-    public String getConservationMethod()
+    public String getConservationMethod() 
     {
         return conservationMethod;
     }
-    public void setMoldingDate(String moldingDate)
+    public void setMoldingDate(String moldingDate) 
     {
         this.moldingDate = moldingDate;
     }
 
-    public String getMoldingDate()
+    public String getMoldingDate() 
     {
         return moldingDate;
+    }
+    public void setPrice(BigDecimal price) 
+    {
+        this.price = price;
+    }
+
+    public BigDecimal getPrice() 
+    {
+        return price;
     }
 
     @Override
@@ -215,6 +229,7 @@ public class DetectOrder extends BaseEntity
             .append("testItems", getTestItems())
             .append("conservationMethod", getConservationMethod())
             .append("moldingDate", getMoldingDate())
+            .append("price", getPrice())
             .toString();
     }
 }

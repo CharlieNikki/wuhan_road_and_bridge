@@ -19,15 +19,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="testItems"    column="test_items"    />
         <result property="conservationMethod"    column="conservation_method"    />
         <result property="moldingDate"    column="molding_date"    />
+        <result property="price"    column="price"    />
     </resultMap>
 
     <sql id="selectDetectOrderVo">
-        select project_id, sample_id, sample_type, project_name, project_company, sample_name, level, specification, client, recipient, acceptance_date, test_items, conservation_method, molding_date from detect_order
+        select project_id, sample_id, sample_type, project_name, project_company, sample_name, level, specification, client, recipient, acceptance_date, test_items, conservation_method, molding_date, price from detect_order
     </sql>
 
     <select id="selectDetectOrderList" parameterType="DetectOrder" resultMap="DetectOrderResult">
         <include refid="selectDetectOrderVo"/>
         <where>  
+            <if test="projectId != null  and projectId != ''"> and project_id = #{projectId}</if>
             <if test="sampleId != null  and sampleId != ''"> and sample_id = #{sampleId}</if>
             <if test="sampleType != null  and sampleType != ''"> and sample_type = #{sampleType}</if>
             <if test="projectName != null  and projectName != ''"> and project_name like concat('%', #{projectName}, '%')</if>
@@ -41,6 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="testItems != null  and testItems != ''"> and test_items = #{testItems}</if>
             <if test="conservationMethod != null  and conservationMethod != ''"> and conservation_method = #{conservationMethod}</if>
             <if test="moldingDate != null  and moldingDate != ''"> and molding_date = #{moldingDate}</if>
+            <if test="price != null "> and price = #{price}</if>
         </where>
     </select>
     
@@ -66,6 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="testItems != null">test_items,</if>
             <if test="conservationMethod != null">conservation_method,</if>
             <if test="moldingDate != null">molding_date,</if>
+            <if test="price != null">price,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="projectId != null">#{projectId},</if>
@@ -82,6 +86,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="testItems != null">#{testItems},</if>
             <if test="conservationMethod != null">#{conservationMethod},</if>
             <if test="moldingDate != null">#{moldingDate},</if>
+            <if test="price != null">#{price},</if>
          </trim>
     </insert>
 
@@ -101,6 +106,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="testItems != null">test_items = #{testItems},</if>
             <if test="conservationMethod != null">conservation_method = #{conservationMethod},</if>
             <if test="moldingDate != null">molding_date = #{moldingDate},</if>
+            <if test="price != null">price = #{price},</if>
         </trim>
         where project_id = #{projectId}
     </update>
